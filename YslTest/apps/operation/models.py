@@ -12,7 +12,8 @@ class MyComments(models.Model):
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
 
     def __str__(self):
-        return '%s'%self.id
+        return self.user_name.username
+        # return '%s'%self.id
 
     class Meta:
         verbose_name = '评论信息'

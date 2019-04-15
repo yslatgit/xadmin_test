@@ -14,6 +14,9 @@ class UserProfile(AbstractUser):
     create_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True,verbose_name='更新时间')
 
+    def __str__(self):
+        return self.username
+
     class Meta:
         verbose_name = '用户管理'
         verbose_name_plural = verbose_name
