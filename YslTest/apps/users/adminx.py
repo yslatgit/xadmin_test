@@ -19,7 +19,7 @@ class GlobalSettings(object):
 
 class EmailVerfiyAdmin(object):
     list_display = ['email','type','send_time']
-    search_fileds = ['email','type']
+    search_fields = ['email','type']
     list_filter = ['email','type']
 
 xadmin.site.register(EmailVerfiy,EmailVerfiyAdmin)
