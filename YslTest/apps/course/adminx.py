@@ -2,6 +2,7 @@
 import xadmin
 from xadmin import views
 from course.models import *
+from xadmin.layout import Main,TabHolder,Tab,Fieldset,Row,Col,AppendedText,Side,Field #dj39
 
 
 # class GlobalSettings(object):
@@ -22,36 +23,53 @@ from course.models import *
 #         ]
 
 class VideoSourceAdmin(object):
-    list_display = ['name','time','create_time','update_time']
-    #展示的列表中的链接
-    list_display_links = ['name','time']
-    #搜索框--支持输入名称
-    search_fields = ['name']
-    #过滤器
+    list_display = ['name','create_time','update_time']
+    search_fileds = ['name']
     list_filter = ['name']
-    #页面上可以编辑的字段
-    list_editable = ['name']
-    #排序
-    ordering = ['update_time']
-    #只读字段
-    readonly_fields = ['time']
-    # fieldsets = ['视频666',{'fields':('name','create_time','update_time')}] #不知道怎样使用
 
 class SectionAdmin(object):
     list_display = ['name','create_time','update_time','video']
-    search_fields = ['name','video']
+    search_fileds = ['name','video']
     list_filter = ['name','video']
-    # inlines = [VideoSourceAdmin]
 
 class TeacherAdmin(object):
     list_display = ['name','email','introduction', 'create_time', 'update_time']
-    search_fields = ['name','email','introduction']
+    search_fileds = ['name','email','introduction']
     list_filter = ['name','email']
 
 class CourseAdmin(object):
     list_display = ['name','time','type','level','introduction','studey_num','create_time','update_time','section','teacher']
-    search_fields = ['name','time','type','level']
+    search_fileds = ['name','time','type','level']
     list_filter = ['name','time','type','level']
+
+    #dj39
+    form_layout = (
+        Fieldset(u'',
+             Row('name','time','type'),
+             Row('level','studey_num','teacher'),
+             #模块不可以拖动
+             css_class='unsort'
+         ),
+        Fieldset(('描述'),
+             Row('introduction'),
+        ),
+        Fieldset(('章节'),
+             Row('section'),
+             #不显示区块的title名
+             css_class='unsort no_title'
+        ),
+        #dj41
+        TabHolder(
+            Tab('标签1',
+                Field('name',css_class="extra"),#输入框可以占一整行
+                Field('time'),
+                css_class='unsort'),
+            Tab('标签2',
+                Field('type','level'),
+                Field('teacher'),
+                )
+        ),
+    )
 
 
 xadmin.site.register(Course,CourseAdmin)

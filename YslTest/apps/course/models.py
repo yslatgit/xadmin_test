@@ -5,7 +5,6 @@ from users.models import UserProfile
 # Create your models here.
 class VideoSource(models.Model):
     name = models.CharField(max_length=30,verbose_name='视频名称')
-    time = models.CharField(max_length=10,default='1',verbose_name='视频长度')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
 
@@ -33,7 +32,6 @@ class Section(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=10,verbose_name='讲师姓名')
-    photo = models.ImageField(upload_to='TeacherPhoto/%Y/%m/%d',verbose_name='讲师照片',default='')
     email = models.EmailField(max_length=30,verbose_name='讲师邮箱')
     introduction = models.CharField(max_length=200, verbose_name='讲师简介')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
