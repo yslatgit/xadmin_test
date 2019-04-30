@@ -33,6 +33,7 @@ class Section(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=10,verbose_name='讲师姓名')
     email = models.EmailField(max_length=30,verbose_name='讲师邮箱')
+    photo = models.ImageField(upload_to='TeacherPhoto/%Y/%m/%d',default='',verbose_name='讲师照片')
     introduction = models.CharField(max_length=200, verbose_name='讲师简介')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
